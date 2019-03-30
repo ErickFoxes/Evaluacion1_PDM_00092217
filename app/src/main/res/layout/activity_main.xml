@@ -298,3 +298,12 @@
 
 
 </LinearLayout>
+
+<!--
+
+    android:paddingTop="@dimen/padding_icono"
+    android:paddingBottom="@dimen/padding_icono"
+    android:paddingLeft="@dimen/padding_icono"
+    android:paddingRight="@dimen/padding_icono"
+    android:layout_margin="@dimen/padding_icono"
+-->

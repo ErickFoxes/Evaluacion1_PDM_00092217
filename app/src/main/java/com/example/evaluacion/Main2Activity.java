@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Button;
 
 import com.example.evaluacion.Utils.AppConstants;
 
@@ -12,6 +13,7 @@ public class Main2Activity extends AppCompatActivity {
     TextView Txt_usu,Txt_corr, Txt_total;
     LinearLayout LL1, LL2,LL3,LL4,LL5,LL6,LL7,LL8,LL9;
     TextView TXTV_1,TXTV_2,TXTV_3,TXTV_4,TXTV_5,TXTV_6,TXTV_7,TXTV_8,TXTV_9;
+    Button BTN_share;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +43,11 @@ public class Main2Activity extends AppCompatActivity {
         LL8 = findViewById(R.id.LiLa2_8);
         LL9 = findViewById(R.id.LiLa2_9);
 
+        BTN_share = findViewById(R.id.btn_compartir);
         if(mIntent != null){
-            Txt_usu.setText(mIntent.getStringExtra(AppConstants.TEXT_USU));
-            Txt_corr.setText(mIntent.getStringExtra(AppConstants.TEXT_CORREO));
-            Txt_total.setText(mIntent.getStringExtra(AppConstants.TEXT_TOTAL));
+            Txt_usu.setText("Usuario: "+mIntent.getStringExtra(AppConstants.TEXT_USU));
+            Txt_corr.setText("Correo"+mIntent.getStringExtra(AppConstants.TEXT_CORREO));
+            Txt_total.setText("Total: "+mIntent.getStringExtra(AppConstants.TEXT_TOTAL));
 
             TXTV_1.setText(mIntent.getStringExtra(AppConstants.TEXT_LL1));
             TXTV_2.setText(mIntent.getStringExtra(AppConstants.TEXT_LL2));
@@ -57,5 +60,13 @@ public class Main2Activity extends AppCompatActivity {
             TXTV_9.setText(mIntent.getStringExtra(AppConstants.TEXT_LL9));
 
         }
+        BTN_share.setOnClickListener(v ->{
+            Intent nIntent = new Intent();
+            nIntent.setAction(Intent.ACTION_SEND);
+            nIntent.setType("text/plain");
+            nIntent.putExtra(Intent.EXTRA_TEXT, "Usuario: "+ Txt_usu.getText().toString()+ "\n"+ "Correo: " + Txt_corr.getText().toString() + "\n" + "Total: "+ Txt_total.getText().toString());
+            startActivity(nIntent);
+        });
+
     }
 }
